@@ -1,32 +1,34 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
+import './App.css';
+import Profile from './Profile';
 import img from "./img.jpg"
- 
-class App extends React.Component {
-    state = {
-      person: {
-        'fullName': 'Zeramdini Wiem',
-        'bio': 'xyz',
-        'imgsrc': img,
-        'profession': "etudinate"
-      },
-      'shows': false
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            fullName: "zeramdini wiem",
+            profession: "etudiante",
+            bio:"xyz",
+            img,
+            shows: true
+        }
     };
-    
+    shows = () => {
+        this.setState({ shows: !this.state.shows })
+    };
     render() {
-      return (
-        <div>
-          <button onClick={() => this.setState({'shows' ? false : true})}>  Show profile </button>
-          
-          {this.state.shows ? [ <React.Fragment>
-            <h1>{this.state.person.fullName}</h1>
-            <p>{this.state.person.bio}</p>
-            <img src={this.state.person.imgsrc} />
-            <p>{this.state.person.imgsrc}</p>
-            </React.Fragment>
-           ] : null}
-        </div>
-      );
+        return (
+            <>
+                { }
+                {this.state.shows && 
+                    (<div className='composants'>
+                        <Profile src={this.state.img} fullName={this.state.fullName} profession={this.state.profession} bio={this.state.bio} />
+                    </div>
+                )}
+                <button className={ this.state.shows ? 'success' : 'échec'} onClick={this.shows}>{this.state.shows ? 'hide me' : 'Show me'}
+                </button>
+            </>
+        );
     }
-  }
-
-    export default App
+};
+export default App;
